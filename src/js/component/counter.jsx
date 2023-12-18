@@ -3,10 +3,11 @@ import PropType from "prop-types";
 
 export default function Counter(props) {
   return (
-    <div className="container-fluid py-5">
-      <h1 className="display-5 fw-bold">
-        {props.hoursValue}h {props.minutesValue}m {props.secondsValue}s
-      </h1>
+    <div className="col-9 container-fluid py-5 d-flex justify-content-center bg-black rounded-bottom shadow">
+      <i className="far fa-clock fw-bold m-2 fs-1 text-white"></i>
+      <h1 className="fw-bold m-2 text-white">{props.hoursValue}h </h1>
+      <h1 className="fw-bold m-2 text-white">{props.minutesValue}m </h1>
+      <h1 className="fw-bold m-2 text-white">{props.secondsValue}s</h1>
     </div>
   );
 }
