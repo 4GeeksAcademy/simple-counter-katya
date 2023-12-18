@@ -1,6 +1,7 @@
 import React from "react";
 import PropType from "prop-types";
 import Buttons from "./buttons";
+import SetTimerInputs from "./setTimerInputs";
 
 export default function Counter(props) {
   return (
@@ -12,6 +13,7 @@ export default function Counter(props) {
         <h1 className="fw-bold m-2">{props.secondsValue}s</h1>
       </div>
       <div>
+        <SetTimerInputs />
         <Buttons />
       </div>
     </div>
