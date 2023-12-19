@@ -10,20 +10,15 @@ let hours = 0;
 
 const intervalID = setInterval(function () {
 
-    if (seconds < 59) {
-        seconds++
-    } else {
+    seconds++
+    if (seconds == 60) {
         seconds = 0
-        if (minutes < 59) {
-            minutes++
-        } else {
-            minutes = 0
-            if (hours < 24) {
-                hours++
-            } else {
-                hours = 0
-            }
-        }
+        minutes++
+    }
+
+    if (minutes == 60) {
+        minutes = 0
+        hours++
     }
 
     ReactDOM.render(
@@ -36,4 +31,4 @@ const intervalID = setInterval(function () {
     );
 }, 1000);
 
-//render your react application
+//export default intervalID;
