@@ -9,10 +9,37 @@ let minutes = 0;
 let hours = 0;
 let isRunning = true;
 
-function stopButton() {
+// -FUNCTIONS-
+
+displayCounter();
+
+let intervalID = setInterval(updateCounter, 1000)
+
+function setButton() {
     clearInterval(intervalID);
+    seconds = parseInt(document.querySelector("#secondsInput").value);
+    minutes = parseInt(document.querySelector("#minutesInput").value);
+    hours = parseInt(document.querySelector("#hoursInput").value);
+    
+    if (!seconds || !minutes || !hours) {
+        alert("Please fill in the fields")
+        
+    } else if (seconds || minutes || hours) {
+        intervalID = setInterval(updateCounter, 1000);
+    }
+    
+};
+
+function stopButton() {
+    if (!seconds || !minutes || !hours) {
+        alert("Please fill in the fields")
+        
+    } else {
+        clearInterval(intervalID);
     isRunning = false;
 };
+    }
+    
 
 function resetButton() {
     clearInterval(intervalID);
@@ -24,11 +51,18 @@ function resetButton() {
 };
 
 function resumeButton() {
-    if (!isRunning) {
+    if (!seconds || !minutes || !hours) {
+        alert("Please fill in the fields")
+        
+    } else {
+        if (!isRunning) {
         isRunning = true;
         intervalID = setInterval(updateCounter, 1000);
     }
-}
+    }
+    
+};
+
 function updateCounter() {
 
     seconds++
@@ -43,7 +77,8 @@ function updateCounter() {
     };
 
     displayCounter();
-}
+};
+
 
 function displayCounter() {
     ReactDOM.render(
@@ -54,9 +89,10 @@ function displayCounter() {
             stop={stopButton}
             reset={resetButton}
             resume={resumeButton}
+            set={setButton}
         />,
         document.querySelector("#app")
     );
-} 
+}; 
 
-let intervalID = setInterval(updateCounter, 1000);
+

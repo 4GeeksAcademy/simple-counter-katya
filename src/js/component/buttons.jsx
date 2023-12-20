@@ -9,7 +9,7 @@ export default function Buttons(props) {
 
   return (
     <div className="col-9 container-fluid mt-3 d-flex justify-content-center">
-      <ButtonSet />
+      <ButtonSet set = {props.set}/>
       <ButtonReset reset = {props.reset}/>
       <ButtonResume resume = {props.resume}/>
       <ButtonStop stop = {props.stop} />

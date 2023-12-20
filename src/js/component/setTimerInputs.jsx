@@ -6,7 +6,7 @@ export default function SetTimerInputs() {
       <input
         type="number"
         className="form-control mx-2"
-        id="hours"
+        id="hoursInput"
         placeholder="Hours"
         aria-label="Hours"
         min="1"
@@ -16,7 +16,7 @@ export default function SetTimerInputs() {
       <input
         type="number"
         className="form-control mx-2"
-        id="minutes"
+        id="minutesInput"
         placeholder="Minutes"
         aria-label="Minutes"
         min="0"
@@ -26,7 +26,7 @@ export default function SetTimerInputs() {
       <input
         type="number"
         className="form-control mx-2"
-        id="seconds"
+        id="secondsInput"
         placeholder="Seconds"
         aria-label="Seconds"
         min="0"

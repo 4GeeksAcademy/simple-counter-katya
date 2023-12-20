@@ -26,7 +26,7 @@ export default function Counter(props) {
       </div>
       <div>
         <SetTimerInputs />
-       <Buttons stop = {props.stop} reset = {props.reset} resume = {props.resume}/>
+       <Buttons stop = {props.stop} reset = {props.reset} resume = {props.resume} set = {props.set}/>
       </div>
     </div>
   );
