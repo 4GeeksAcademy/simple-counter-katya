@@ -2,22 +2,23 @@ import React from "react";
 
 export default function SetTimerInputs() {
   return (
-    <div className="col-5 container-fluid mt-4 d-flex justify-content-start">
+
+    <div className="container-fluid d-flex justify-content-start">
       <input
         type="number"
-        className="form-control mx-2"
+        className="form-control my-3 mx-2"
         id="hoursInput"
-        placeholder="Hours"
+        placeholder="Hour"
         aria-label="Hours"
         min="1"
         max="23"
       />
-
+      
       <input
         type="number"
-        className="form-control mx-2"
+        className="form-control my-3 mx-2"
         id="minutesInput"
-        placeholder="Minutes"
+        placeholder="Min"
         aria-label="Minutes"
         min="0"
         max="59"
@@ -25,9 +26,9 @@ export default function SetTimerInputs() {
 
       <input
         type="number"
-        className="form-control mx-2"
+        className="form-control my-3 mx-2"
         id="secondsInput"
-        placeholder="Seconds"
+        placeholder="Sec"
         aria-label="Seconds"
         min="0"
         max="59"

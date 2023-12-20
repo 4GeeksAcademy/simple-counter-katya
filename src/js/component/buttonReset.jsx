@@ -15,5 +15,5 @@ export default function ButtonReset(props) {
 }
 
 ButtonReset.propTypes = {
-  onClick: PropType.func,
+  onClick: PropType.func
 };

@@ -5,6 +5,7 @@ import SetTimerInputs from "./setTimerInputs";
 
 export default function Counter(props) {
   return (
+    // -COUNTER DISPLAY-
     <div>
       <div className="col-9 container-fluid py-5 d-flex justify-content-center bg-black rounded-bottom shadow text-white">
         <i className="far fa-clock fw-bold m-2 fs-1"></i>
@@ -25,12 +26,16 @@ export default function Counter(props) {
         </h1>
       </div>
       <div>
-        <SetTimerInputs />
-       <Buttons stop = {props.stop} reset = {props.reset} resume = {props.resume} set = {props.set}/>
+        <Buttons
+          stop={props.stop}
+          reset={props.reset}
+          resume={props.resume}
+          set={props.set}
+        />
       </div>
     </div>
   );
-}
+};
 
 Counter.propTypes = {
   counter: PropType.number,

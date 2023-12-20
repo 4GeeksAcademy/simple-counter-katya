@@ -4,16 +4,16 @@ import ReactDOM from "react-dom";
 import "../styles/index.css";
 import Counter from "./component/counter.jsx";
 
+// -VARIABLES-
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
 let isRunning = true;
+let intervalID = setInterval(initialCounter, 1000)
 
 
 
-displayCounter();
-
-let intervalID = setInterval(updateCounter, 1000)
+// -BUTTON FUNCTIONS
 
 function setButton() {
 
@@ -25,16 +25,18 @@ function setButton() {
 
     if (seconds || minutes || hours) {
 
-        if (!seconds) seconds = 0;
-        if (!minutes) minutes = 0;
-        if (!hours) hours = 0;
-
-        intervalID = setInterval(countDown, 1000); 
+        seconds ? seconds : seconds = 0;
+        minutes ? minutes : minutes = 0;
+        hours ? hours : hours = 0;
+      
+        intervalID = setInterval(countDown, 1000);
+        document.querySelector("#secondsInput").value = null;
+        document.querySelector("#minutesInput").value = null;
+        document.querySelector("#hoursInput").value = null;
 
     } else {
-
+        isRunning = false;
         alert("Please fill in the fields");
-
     };
 };
 
@@ -48,7 +50,6 @@ function stopButton() {
     } else {
 
         alert("Please fill in the fields");
-
     };
 };
 
@@ -74,11 +75,12 @@ function resumeButton() {
     } else {
 
         alert("Please fill in the fields");
-
     };
 };
 
-function updateCounter() {
+// -TIMER FUNCTIONS-
+
+function initialCounter() {
 
     seconds++;
 
@@ -112,20 +114,20 @@ function countDown() {
                 seconds = 59;
 
             } else if (hours > 0) {
-
                 hours--;
                 minutes = 59;
                 seconds = 59;
 
             }
         } else {
-
             seconds--;
         };
 
         displayCounter();
     };
 };
+
+// -RENDER FUNCTION-
 
 function displayCounter() {
 
@@ -143,4 +145,4 @@ function displayCounter() {
     );
 };
 
-
+displayCounter();

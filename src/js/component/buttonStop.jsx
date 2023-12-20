@@ -13,7 +13,7 @@ export default function ButtonStop(props) {
       Stop
     </button>
   );
-}
+};
 
 ButtonStop.propTypes = {
   onClick: PropType.func,
