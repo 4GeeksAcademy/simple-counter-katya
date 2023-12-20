@@ -9,67 +9,83 @@ let minutes = 0;
 let hours = 0;
 let isRunning = true;
 
-// -FUNCTIONS-
+
 
 displayCounter();
 
 let intervalID = setInterval(updateCounter, 1000)
 
 function setButton() {
+
     clearInterval(intervalID);
+
     seconds = parseInt(document.querySelector("#secondsInput").value);
     minutes = parseInt(document.querySelector("#minutesInput").value);
     hours = parseInt(document.querySelector("#hoursInput").value);
-    
-    if (!seconds || !minutes || !hours) {
-        alert("Please fill in the fields")
-        
-    } else if (seconds || minutes || hours) {
-        intervalID = setInterval(updateCounter, 1000);
-    }
-    
+
+    if (seconds || minutes || hours) {
+
+        if (!seconds) seconds = 0;
+        if (!minutes) minutes = 0;
+        if (!hours) hours = 0;
+
+        intervalID = setInterval(countDown, 1000); 
+
+    } else {
+
+        alert("Please fill in the fields");
+
+    };
 };
 
 function stopButton() {
-    if (!seconds || !minutes || !hours) {
-        alert("Please fill in the fields")
-        
-    } else {
+
+    if (seconds || minutes || hours) {
+
         clearInterval(intervalID);
-    isRunning = false;
+        isRunning = false;
+
+    } else {
+
+        alert("Please fill in the fields");
+
+    };
 };
-    }
-    
 
 function resetButton() {
+
     clearInterval(intervalID);
+
     seconds = 0;
     minutes = 0;
     hours = 0;
     isRunning = false;
+
     displayCounter();
 };
 
 function resumeButton() {
-    if (!seconds || !minutes || !hours) {
-        alert("Please fill in the fields")
-        
-    } else {
-        if (!isRunning) {
+
+    if (!isRunning && (seconds || minutes || hours)) {
+
         isRunning = true;
-        intervalID = setInterval(updateCounter, 1000);
-    }
-    }
-    
+        intervalID = setInterval(countDown, 1000);
+
+    } else {
+
+        alert("Please fill in the fields");
+
+    };
 };
 
 function updateCounter() {
 
-    seconds++
+    seconds++;
+
     if (seconds == 60) {
         seconds = 0
         minutes++
-    }
+    };
 
     if (minutes == 60) {
         minutes = 0
@@ -79,8 +95,40 @@ function updateCounter() {
     displayCounter();
 };
 
+function countDown() {
+
+    if (seconds === 0 && minutes === 0 && hours === 0) {
+
+        clearInterval(intervalID);
+        isRunning = false;
+
+        alert("Countdown complete!");
+
+    } else {
+        if (seconds === 0) {
+
+            if (minutes > 0) {
+                minutes--;
+                seconds = 59;
+
+            } else if (hours > 0) {
+
+                hours--;
+                minutes = 59;
+                seconds = 59;
+
+            }
+        } else {
+
+            seconds--;
+        };
+
+        displayCounter();
+    };
+};
 
 function displayCounter() {
+
     ReactDOM.render(
         <Counter
             secondsValue={seconds}
@@ -93,6 +141,6 @@ function displayCounter() {
         />,
         document.querySelector("#app")
     );
-}; 
+};
 
 
