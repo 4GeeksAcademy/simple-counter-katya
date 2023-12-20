@@ -7,23 +7,29 @@ import Counter from "./component/counter.jsx";
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
+let isRunning = true;
 
 function stopButton() {
-    clearInterval(intervalID)
+    clearInterval(intervalID);
+    isRunning = false;
 };
 
 function resetButton() {
     clearInterval(intervalID);
-    document.querySelector("#seconds").innerHTML = "00s";
-    document.querySelector("#minutes").innerHTML = "00m";
-    document.querySelector("#hours").innerHTML = "00h"
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    isRunning = false;
+    displayCounter();
 };
 
 function resumeButton() {
-    clearInterval(intervalID)
+    if (!isRunning) {
+        isRunning = true;
+        intervalID = setInterval(updateCounter, 1000);
+    }
 }
-
-const intervalID = setInterval(function () {
+function updateCounter() {
 
     seconds++
     if (seconds == 60) {
@@ -36,7 +42,10 @@ const intervalID = setInterval(function () {
         hours++
     };
 
+    displayCounter();
+}
 
+function displayCounter() {
     ReactDOM.render(
         <Counter
             secondsValue={seconds}
@@ -48,5 +57,6 @@ const intervalID = setInterval(function () {
         />,
         document.querySelector("#app")
     );
-}, 1000);
+} 
 
+let intervalID = setInterval(updateCounter, 1000);
