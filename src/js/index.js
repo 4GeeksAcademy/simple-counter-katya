@@ -9,8 +9,8 @@ let seconds = 0;
 let minutes = 0;
 let hours = 0;
 let isRunning = true;
-let intervalID = setInterval(initialCounter, 1000)
-
+let intervalID = setInterval(initialCounter, 1000);
+let userSetTimer = false;
 
 
 // -BUTTON FUNCTIONS
@@ -23,11 +23,13 @@ function setButton() {
     minutes = parseInt(document.querySelector("#minutesInput").value);
     hours = parseInt(document.querySelector("#hoursInput").value);
 
-    if (seconds || minutes || hours) {
-
         seconds ? seconds : seconds = 0;
         minutes ? minutes : minutes = 0;
         hours ? hours : hours = 0;
+
+    if (seconds || minutes || hours) {
+
+        userSetTimer = true;
       
         intervalID = setInterval(countDown, 1000);
         document.querySelector("#secondsInput").value = null;
@@ -35,8 +37,10 @@ function setButton() {
         document.querySelector("#hoursInput").value = null;
 
     } else {
-        isRunning = false;
+        
         alert("Please fill in the fields");
+        isRunning = false;
+        
     };
 };
 
@@ -47,9 +51,9 @@ function stopButton() {
         clearInterval(intervalID);
         isRunning = false;
 
-    } else {
+    } else if (seconds == 0 && minutes == 0 && hours == 0) {
 
-        alert("Please fill in the fields");
+        alert("Please fill in the fields")
     };
 };
 
@@ -67,14 +71,19 @@ function resetButton() {
 
 function resumeButton() {
 
-    if (!isRunning && (seconds || minutes || hours)) {
+    if (!isRunning && userSetTimer) {
 
         isRunning = true;
         intervalID = setInterval(countDown, 1000);
 
-    } else {
+    } else if (!isRunning && !userSetTimer) {
 
-        alert("Please fill in the fields");
+        isRunning = true;
+        intervalID = setInterval(initialCounter, 1000);
+
+    } else if (isRunning) {
+
+        alert("The timer is already running");
     };
 };
 
