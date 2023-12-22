@@ -19,17 +19,21 @@ function setButton() {
 
     clearInterval(intervalID);
 
-    seconds = parseInt(document.querySelector("#secondsInput").value);
-    minutes = parseInt(document.querySelector("#minutesInput").value);
-    hours = parseInt(document.querySelector("#hoursInput").value);
+    let secondsUserValue = parseInt(document.querySelector("#secondsInput").value);
+    let minutesUserValue = parseInt(document.querySelector("#minutesInput").value);
+    let hoursUserValue = parseInt(document.querySelector("#hoursInput").value);
 
-        seconds ? seconds : seconds = 0;
-        minutes ? minutes : minutes = 0;
-        hours ? hours : hours = 0;
+        secondsUserValue = secondsUserValue ? secondsUserValue : 0;
+        minutesUserValue = minutesUserValue ? minutesUserValue : 0;
+        hoursUserValue = hoursUserValue ? hoursUserValue : 0;
 
-    if (seconds || minutes || hours) {
+    if (secondsUserValue || minutesUserValue || hoursUserValue) {
 
         userSetTimer = true;
+
+        seconds = secondsUserValue;
+        minutes = minutesUserValue;
+        hours = hoursUserValue;
       
         intervalID = setInterval(countDown, 1000);
         document.querySelector("#secondsInput").value = null;
